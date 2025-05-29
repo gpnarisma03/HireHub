@@ -83,7 +83,7 @@ The front-end is built using React, styled with Bootstrap for responsiveness. Th
 
 ## Visual Mockup Reference
 
-- [Figma Design File (if available)](https://www.figma.com/proto/JfL6dWe5bBsKAxDL4TyCYC/HireHub?node-id=0-1&t=gVhzeqPPE3ydf9bQ-1)
+- [Figma Design File](https://www.figma.com/proto/JfL6dWe5bBsKAxDL4TyCYC/HireHub?node-id=0-1&t=gVhzeqPPE3ydf9bQ-1)
 - Landing Page: Mockup 1
   ![Sample Landing Page](mockups/landing-page.png)
 - Sample Login Page: Mockup 2
@@ -212,7 +212,7 @@ The front-end is built using React, styled with Bootstrap for responsiveness. Th
 ## Appendices
 
 - Appendix A: ER Diagram
-- Appendix B: API Endpoints (if applicable)
+- Appendix B: API Endpoints
 - Appendix C: Use Case Diagrams
 - Appendix D: UI Flowcharts
 

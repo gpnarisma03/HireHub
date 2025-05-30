@@ -88,8 +88,12 @@ The front-end is built using React, styled with Bootstrap for responsiveness. Th
   ![Sample Landing Page](mockups/landing-page.png)
 - Sample Job Listing Page: Mockup 2
   ![Sample Login Page](mockups/job-listing-page.png)
-- Sample Login Page: Mockup 3
+  - Sample Job Listing Page: Mockup 3
+    ![Sample Login Page](mockups/job-details.png)
+- Sample Login Page: Mockup 4
   ![Sample Login Page](mockups/login-page.png)
+  - Sample Login Page: Mockup 5
+    ![Sample Login Page](mockups/registration-page.png)
 
 ---
 

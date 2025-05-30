@@ -86,8 +86,10 @@ The front-end is built using React, styled with Bootstrap for responsiveness. Th
 - [Figma Design File (if available)](https://www.figma.com/proto/JfL6dWe5bBsKAxDL4TyCYC/HireHub?node-id=0-1&t=gVhzeqPPE3ydf9bQ-1)
 - Landing Page: Mockup 1
   ![Sample Landing Page](mockups/landing-page.png)
-- Sample Login Page: Mockup 2
-- Sample Job Listing Page: Mockup 3
+- Sample Job Listing Page: Mockup 2
+  ![Sample Login Page](mockups/job-listing-page.png)
+- Sample Login Page: Mockup 3
+  ![Sample Login Page](mockups/login-page.png)
 
 ---
 

@@ -1,11 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Reeway:wght@400;700;900&display=swap");
 
 :root {
-  --primary_1: #197742;
-  --primary_2: #1d894b;
-
-  --secondary_1: #8dfbbc;
-  --secondary_2: #befcd9;
+  --primary_1: #1d788a;
+  --primary_2: #269db4;
+  --primary_3: #9fe3f0;
 
   --text_1: #616161;
   --text_2: #848484;
@@ -15,7 +13,7 @@
 
 body {
   font-family: "Heebo", sans-serif;
-  background-color: var(--secondary_2);
+  background-color: var(--primary_3);
 }
 
 * a {
@@ -117,9 +115,9 @@ body {
 }
 
 .find-a-job-button {
-  background-color: var(--secondary_1);
+  background-color: var(--primary_1);
   text-decoration: none;
-  color: var(--primary_1);
+  color: white;
   border-radius: 5px;
   font-weight: bold;
 }
@@ -153,10 +151,8 @@ body {
   transform: translateY(-4px);
 }
 
-.explore-category .card-img-top {
-  height: 45px;
-  object-fit: contain;
-  flex-shrink: 0;
+.explore-category .bi {
+  color: var(--primary_1);
 }
 
 .explore-category .card-body {
@@ -213,7 +209,7 @@ body {
 }
 
 #jobTabs .nav-link:hover:not(.active) {
-  border-bottom-color: var(--secondary_1);
+  border-bottom-color: var(--primary_3);
 }
 .nav-tabs {
   border-bottom: 1px solid #dee2e6;

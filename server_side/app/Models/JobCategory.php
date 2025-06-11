@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Job;
 
 class JobCategory extends Model
 {
@@ -16,6 +17,7 @@ class JobCategory extends Model
 
     protected $fillable = [
         'category_name',
+        'category_logo'
     ];
 
     /**

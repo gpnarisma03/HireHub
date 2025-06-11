@@ -1,15 +1,38 @@
 @import url("https://fonts.googleapis.com/css2?family=Reeway:wght@400;700;900&display=swap");
 
 :root {
-  --primary_1: #1d788a;
-  --primary_2: #269db4;
-  --primary_3: #9fe3f0;
+  --primary_1: #1e3a8a;
+  --primary_2: #274cb4;
+
+  --secondary_1: #f97316;
+  --secondary_2: #fb8d3e;
 
   --text_1: #616161;
   --text_2: #848484;
 
   --bg-white: white;
   --bacground: rgb(236, 230, 230);
+}
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+.spinner {
+  width: 56px;
+  height: 56px;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #f97316;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 body {
@@ -43,7 +66,7 @@ body {
 }
 
 .navbar .navbar-brand:hover {
-  color: var(--primary_2); /* or any other color you want */
+  color: var(--secondary_1);
   transform: scale(1.05);
   cursor: pointer;
 }
@@ -55,7 +78,7 @@ body {
 }
 
 .navbar .nav-link:hover {
-  color: var(--primary_1);
+  color: var(--secondary_1);
   cursor: pointer;
   font-weight: 700;
 }
@@ -78,9 +101,15 @@ body {
   margin-left: 1rem;
   text-decoration: none;
   cursor: pointer;
-  background-color: var(--primary_1);
+  background-color: var(--secondary_1);
   color: var(--bg-white);
   font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.post-a-job:hover {
+  transition: scale(1.05);
+  background-color: var(--secondary_2);
 }
 
 .nav-collapse {
@@ -136,7 +165,7 @@ body {
 }
 .search-job-button,
 .find-a-job-button {
-  background-color: var(--primary_1);
+  background-color: var(--secondary_1);
   text-decoration: none;
   color: white;
   border-radius: 5px;
@@ -147,13 +176,49 @@ body {
 .search-job-button:hover,
 .find-a-job-button:hover {
   background-color: var(
-    --primary_2
+    --secondary_2
   ); /* You can define this variable in your root */
   transform: scale(1.05); /* Optional: slight zoom on hover */
   text-decoration: none;
   color: white; /* Ensure it stays white on hover */
 }
 
+/* Search Section */
+
+.search-section {
+  background-color: var(--primary_1);
+}
+
+.search-section .section-container {
+  border-radius: 5px;
+}
+
+.search-section .input-group {
+  border: 1px solid rgba(0, 123, 255, 0.2);
+
+  border-radius: 10px;
+  padding: 0 5px;
+}
+
+.search-section .form-control:focus,
+.form-select:focus {
+  box-shadow: none !important;
+}
+
+.section-container .input-group span {
+  color: var(--primary_1);
+}
+.search-section .search-job-button {
+  background-color: var(--secondary_1);
+  color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.search-section .search-job-button:hover {
+  background-color: var(--secondary_2);
+  color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
 /* Explore Category Section */
 
 .explore-category h2 {
@@ -197,7 +262,7 @@ body {
   font-weight: 600;
 }
 .explore-category .card-text-vacancy {
-  color: var(--primary_2);
+  color: var(--secondary_2);
   font-size: 14px;
 }
 
@@ -220,7 +285,15 @@ body {
 }
 
 /* Job Listings */
-
+.job-listings .input-group {
+  border: 1px solid rgba(0, 123, 255, 0.2);
+  border-radius: 10px;
+  padding: 0 5px;
+}
+.job-listings .form-control:focus,
+.form-select:focus {
+  box-shadow: none !important;
+}
 .job-listings h2 {
   text-align: center;
 }
@@ -292,7 +365,7 @@ body {
 
 .view-job-button:hover {
   background-color: var(--primary_2);
-  transform: translateY(-2px);
+  transition: scale(1.05);
   text-decoration: none;
   color: white;
 }
@@ -362,6 +435,41 @@ body {
 
 .showpass-button {
   color: var(--primary_1);
+}
+
+/* Job Details */
+
+.job-details .company-logo {
+  height: 80px;
+  width: 80px;
+  border: 1px solid #ccc;
+}
+
+.job-details .image-container {
+  height: 100%;
+  width: 100%;
+}
+
+.job-details .job-summary-side {
+  background-color: var(--primary_1);
+  color: white;
+  font-size: 14px;
+}
+
+.apply-now-button {
+  background-color: var(--primary_1);
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 5px 15px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.apply-now-button:hover {
+  background-color: var(--primary_2);
+  transform: translateY(-2px);
+  text-decoration: none;
+  color: white;
 }
 
 /* Footer */

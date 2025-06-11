@@ -8,10 +8,9 @@ use Illuminate\Support\Facades\Validator;
 
 class JobCategoryController extends Controller
 {
-    // Only admin can access these routes
     public function __construct()
     {
-        $this->middleware(['auth:sanctum', 'role:admin']);
+        $this->middleware(['auth:sanctum', 'role:admin'])->except(['getAllCategories']);
     }
 
     // Add a new category
@@ -19,6 +18,7 @@ class JobCategoryController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'category_name' => 'required|string|unique:job_categories,category_name|max:255',
+            'category_logo' => 'nullable|image|mimes:jpg,jpeg,png,svg|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -29,8 +29,14 @@ class JobCategoryController extends Controller
             ], 422);
         }
 
+        $logoPath = null;
+        if ($request->hasFile('category_logo')) {
+            $logoPath = $request->file('category_logo')->store('category_logos', 'public');
+        }
+
         $category = JobCategory::create([
             'category_name' => $request->category_name,
+            'category_logo' => $logoPath,
         ]);
 
         return response()->json([
@@ -53,6 +59,7 @@ class JobCategoryController extends Controller
 
         $validator = Validator::make($request->all(), [
             'category_name' => 'required|string|max:255|unique:job_categories,category_name,' . $id . ',category_id',
+            'category_logo' => 'nullable|image|mimes:jpg,jpeg,png,svg|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -64,6 +71,13 @@ class JobCategoryController extends Controller
         }
 
         $category->category_name = $request->category_name;
+
+        // Optional: update logo if uploaded
+        if ($request->hasFile('category_logo')) {
+            $logoPath = $request->file('category_logo')->store('category_logos', 'public');
+            $category->category_logo = $logoPath;
+        }
+
         $category->save();
 
         return response()->json([
@@ -92,11 +106,10 @@ class JobCategoryController extends Controller
         ]);
     }
 
-    // Get all categories
     public function getAllCategories()
     {
-        $categories = JobCategory::all();
-
+        $categories = JobCategory::withSum('jobs', 'job_vacancy')->get();
+    
         return response()->json([
             'success' => true,
             'categories' => $categories,

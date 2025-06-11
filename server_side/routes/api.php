@@ -35,7 +35,6 @@ Route::prefix('jobCategory')->group(function () {
         Route::post('/', [JobCategoryController::class, 'addCategory']);         // Create
         Route::put('/{id}', [JobCategoryController::class, 'updateCategory']);    // Update
         Route::delete('/{id}', [JobCategoryController::class, 'deleteCategory']); // Delete
-
     });
     Route::get('/', [JobCategoryController::class, 'getAllCategories']);     // Get all
 });

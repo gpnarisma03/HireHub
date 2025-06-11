@@ -1,0 +1,431 @@
+@import url("https://fonts.googleapis.com/css2?family=Reeway:wght@400;700;900&display=swap");
+
+:root {
+  --primary_1: #1d788a;
+  --primary_2: #269db4;
+  --primary_3: #9fe3f0;
+
+  --text_1: #616161;
+  --text_2: #848484;
+
+  --bg-white: white;
+  --bacground: rgb(236, 230, 230);
+}
+
+body {
+  background-color: var(--bacground) !important;
+  font-family: "Heebo", sans-serif;
+  background-color: var(--primary_3);
+}
+
+* a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.container {
+  background-color: var(--bg-white);
+  padding: 0 !important;
+}
+
+/* Navigation Bar */
+
+.navbar {
+  margin-left: 20px;
+}
+
+/* Logo */
+.navbar .navbar-brand {
+  font-size: 34px;
+  color: var(--primary_1);
+  font-weight: 900;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar .navbar-brand:hover {
+  color: var(--primary_2); /* or any other color you want */
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+/* color of nav links */
+.navbar .nav-link {
+  color: var(--text_1);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+  color: var(--primary_1);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.navbar .nav-login,
+.navbar .nav-register {
+  font-weight: 600;
+}
+
+.nav-login .bi,
+.nav-register .bi {
+  color: var(--primary_1);
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.post-a-job {
+  height: 65px;
+  padding: 0 1.5rem;
+  margin-left: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: var(--primary_1);
+  color: var(--bg-white);
+  font-weight: 600;
+}
+
+.nav-collapse {
+  z-index: 3;
+}
+
+/* Banner Section */
+
+.hero-banner {
+  background: url("/public/images/banner.jpg") center center/cover no-repeat;
+  height: 60vh;
+  position: relative;
+}
+
+.hero-banner .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* dark overlay */
+  z-index: 1;
+}
+
+.custom-banner {
+  background: url("/public/images/banner.jpg") center center/cover no-repeat;
+  height: 40vh;
+  position: relative;
+}
+
+.custom-banner .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* dark overlay */
+  z-index: 1;
+}
+
+.hero-content {
+  z-index: 2;
+}
+
+.hero-banner .title {
+  font-weight: 700;
+  font-size: 40px;
+}
+
+.hero-banner .tag-line {
+  font-size: 16px;
+  padding: 20px;
+}
+.search-job-button,
+.find-a-job-button {
+  background-color: var(--primary_1);
+  text-decoration: none;
+  color: white;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.search-job-button:hover,
+.find-a-job-button:hover {
+  background-color: var(
+    --primary_2
+  ); /* You can define this variable in your root */
+  transform: scale(1.05); /* Optional: slight zoom on hover */
+  text-decoration: none;
+  color: white; /* Ensure it stays white on hover */
+}
+
+/* Explore Category Section */
+
+.explore-category h2 {
+  font-weight: bold;
+  font-weight: 16px;
+  color: var(--text_1);
+}
+
+.explore-category .card-img-top {
+  height: 45px;
+  width: 45px;
+}
+.explore-category .card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.31);
+  -webkit-box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.31);
+  -moz-box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.31);
+  border: none;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.explore-category .card:hover {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  transform: translateY(-4px);
+}
+
+.explore-category .bi {
+  color: var(--primary_1);
+}
+
+.explore-category .card-body {
+  text-align: left;
+  padding: 0;
+  flex: 1;
+}
+.explore-category .card-title {
+  color: var(--text_1);
+  font-weight: 600;
+}
+.explore-category .card-text-vacancy {
+  color: var(--primary_2);
+  font-size: 14px;
+}
+
+/* About */
+
+.about-section h3 {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.about-section p {
+  color: var(--text_1);
+}
+
+.list-unstyled {
+  color: var(--text_1);
+}
+.list-unstyled span {
+  color: var(--primary_1);
+}
+
+/* Job Listings */
+
+.job-listings h2 {
+  text-align: center;
+}
+
+.tab-content {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#jobTabs .nav-link {
+  border: none;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+#jobTabs .nav-link.active {
+  border-bottom-color: var(--primary_2);
+  font-weight: 600;
+}
+
+#jobTabs .nav-link:hover:not(.active) {
+  border-bottom-color: var(--primary_3);
+}
+.nav-tabs {
+  border-bottom: 1px solid #dee2e6 !important;
+  display: inline-flex !important;
+  justify-content: center !important;
+}
+
+/* Tab Font Color */
+.nav-tabs .nav-link {
+  color: var(--text_1);
+}
+
+.nav-tabs .nav-link.active {
+  color: var(--text_1);
+  font-weight: 600;
+}
+.tab-content .company-logo {
+  width: 88px;
+  height: 88px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+}
+.job-listings-card h5 {
+  color: var(--text_1);
+  font-size: 16px;
+  font-weight: 700;
+}
+.job-listings-card span {
+  color: var(--text_1);
+  font-size: 15px;
+}
+.job-listings-card i {
+  color: var(--primary_1);
+  font-size: 20px;
+}
+
+.view-job-button {
+  background-color: var(--primary_1);
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  padding: 10px 10px;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+}
+
+.view-job-button:hover {
+  background-color: var(--primary_2);
+  transform: translateY(-2px);
+  text-decoration: none;
+  color: white;
+}
+
+.browse-more-jobs {
+  background-color: var(--primary_1);
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.browse-more-jobs:hover {
+  background-color: var(--primary_2);
+  transform: translateY(-2px);
+  text-decoration: none;
+  color: white;
+}
+
+/* Login Page */
+
+.form-container {
+  background-color: var(--bg-white);
+  box-shadow: -3px -2px 14px 0px rgba(0, 0, 0, 0.33);
+  -webkit-box-shadow: -3px -2px 14px 0px rgba(0, 0, 0, 0.33);
+  -moz-box-shadow: -3px -2px 14px 0px rgba(0, 0, 0, 0.33);
+  border-radius: 10px;
+}
+
+.form-container .form-control:focus,
+.form-select:focus {
+  box-shadow: none !important;
+}
+
+.form-container h3 {
+  color: var(--primary_1);
+  font-weight: 600;
+}
+
+.form-container hr {
+  color: rgb(160, 160, 160);
+}
+
+.form-container .input-group {
+  margin-top: 20px;
+  border: 1px solid rgba(0, 123, 255, 0.2);
+}
+
+.form-container .login-btn,
+.form-container .register-btn {
+  background-color: var(--primary_1);
+  color: white;
+  font-weight: 600;
+  padding: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.form-container .login-btn:hover,
+.form-container .register-btn:hover {
+  background-color: var(--primary_2);
+  transform: translateY(-2px);
+  text-decoration: none;
+  color: white;
+}
+
+.showpass-button {
+  color: var(--primary_1);
+}
+
+/* Footer */
+
+.footer .container {
+  background-color: var(--primary_1);
+  color: white;
+}
+
+.footer .list-unstyled {
+  color: white;
+}
+
+.footer a {
+  color: white;
+}
+.footer .fas {
+  color: white;
+}
+@media (max-width: 990px) {
+  /* Navigation bar mobile screen */
+  .navbar {
+    margin-left: 0;
+  }
+
+  .navbar-brand {
+    margin-left: 10px;
+  }
+  .navbar .nav-link {
+    color: white;
+  }
+  .navbar-collapse {
+    display: block;
+    width: 100%;
+    z-index: 3;
+    background-color: var(--primary_1);
+    padding: 10px;
+  }
+
+  .navbar-toggler {
+    margin-right: 10px;
+  }
+  .navbar-nav.login-register {
+    display: flex;
+  }
+  .navbar .nav-link:hover {
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Hero Section mobile */
+  .hero-banner {
+    height: 50vh;
+    padding: 1rem;
+  }
+
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+}

@@ -15,7 +15,10 @@ body {
   font-family: "Heebo", sans-serif;
   background-color: var(--primary_3);
 }
-
+input::placeholder,
+textarea::placeholder {
+  color: #898a8a !important;
+}
 * a {
   cursor: pointer;
   text-decoration: none;
@@ -122,6 +125,32 @@ body {
   font-weight: bold;
 }
 
+/* Search Section */
+
+.search-section {
+  background-color: var(--primary_1);
+}
+
+.search-section .section-container {
+  border-radius: 5px;
+}
+
+.search-section .input-group {
+  border: 1px solid rgba(0, 123, 255, 0.2);
+
+  border-radius: 10px;
+  padding: 0 5px;
+}
+
+.search-section .form-control:focus,
+.form-select:focus {
+  box-shadow: none !important;
+}
+
+.section-container .input-group span {
+  color: var(--primary_1);
+}
+
 /* Explore Category Section */
 
 .explore-category h2 {
@@ -187,6 +216,17 @@ body {
   color: var(--primary_1);
 }
 
+/* Job Listings */
+
+.job-listings .input-group {
+  border: 1px solid rgba(0, 123, 255, 0.2);
+  border-radius: 10px;
+  padding: 0 5px;
+}
+.job-listings .form-control:focus,
+.form-select:focus {
+  box-shadow: none !important;
+}
 .job-listings h2 {
   text-align: center;
 }
@@ -247,7 +287,7 @@ body {
   font-size: 20px;
 }
 
-.apply-now-Button {
+.view-job-button {
   background-color: var(--primary_1);
   text-decoration: none;
   color: white;
@@ -258,7 +298,7 @@ body {
   display: inline-block;
 }
 
-.apply-now-Button:hover {
+.view-job-button :hover {
   background-color: var(--primary_2);
   transform: translateY(-2px);
   text-decoration: none;
@@ -276,6 +316,85 @@ body {
 }
 
 .browse-more-jobs:hover {
+  background-color: var(--primary_2);
+  transform: translateY(-2px);
+  text-decoration: none;
+  color: white;
+}
+
+/* Login Page */
+
+.form-container {
+  background-color: var(--bg-white);
+  box-shadow: -3px -2px 14px 0px rgba(0, 0, 0, 0.33);
+  -webkit-box-shadow: -3px -2px 14px 0px rgba(0, 0, 0, 0.33);
+  -moz-box-shadow: -3px -2px 14px 0px rgba(0, 0, 0, 0.33);
+  border-radius: 10px;
+}
+
+.form-container .form-control:focus,
+.form-select:focus {
+  box-shadow: none !important;
+}
+
+.form-container h3 {
+  color: var(--primary_1);
+  font-weight: 600;
+}
+
+.form-container hr {
+  color: rgb(160, 160, 160);
+}
+
+.form-container .input-group {
+  margin-top: 20px;
+  border: 1px solid rgba(0, 123, 255, 0.2);
+}
+
+.form-container .login-btn,
+.form-container .register-btn {
+  background-color: var(--primary_1);
+  color: white;
+  font-weight: 600;
+  padding: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.form-container .login-btn:hover,
+.form-container .register-btn:hover {
+  background-color: var(--primary_2);
+  transform: translateY(-2px);
+  text-decoration: none;
+  color: white;
+}
+
+/* Job Details */
+
+.job-details .company-logo {
+  height: 80px;
+  width: 80px;
+  border: 1px solid #ccc;
+}
+
+.job-details .image-container {
+  height: 100%;
+  width: 100%;
+}
+
+.job-details .job-summary-side {
+  background-color: var(--primary_3);
+}
+
+.apply-now-button {
+  background-color: var(--primary_1);
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 5px 15px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.apply-now-button:hover {
   background-color: var(--primary_2);
   transform: translateY(-2px);
   text-decoration: none;

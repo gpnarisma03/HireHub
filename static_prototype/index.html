@@ -49,21 +49,27 @@
           >
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" href="#">HOME</a>
+                <a class="nav-link active" href="index.html">HOME</a>
               </li>
-              <li class="nav-item"><a class="nav-link" href="#">ABOUT</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">JOBS</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">CONTACT</a></li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">ABOUT</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="jobslistings.html">JOBS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact">CONTACT</a>
+              </li>
             </ul>
 
             <ul class="navbar-nav mb-2 login-register">
               <li class="nav-item">
-                <a class="nav-link nav-login" href="#">
+                <a class="nav-link nav-login" href="login.html">
                   LOGIN <i class="bi bi-box-arrow-in-right"></i>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link nav-register" href="#">
+                <a class="nav-link nav-register" href="register.html">
                   REGISTER <i class="bi bi-person-plus"></i>
                 </a>
               </li>
@@ -95,6 +101,78 @@
               <a href="#" class="search-job-button px-4 py-2">Search a Job</a>
               <a href="#" class="find-a-job-button px-4 py-2">Find a Job</a>
             </div>
+          </div>
+        </section>
+        <!-- Search Section -->
+        <section
+          class="search-section py-4 px-3 px-md-5 position-relative z-2"
+          data-aos="fade-down"
+        >
+          <div class="section-container bg-white p-4">
+            <form class="row g-3 align-items-center justify-content-center">
+              <!-- Keyword Input -->
+              <div class="col-12 col-md-4">
+                <label for="keyword" class="form-label visually-hidden"
+                  >Keyword</label
+                >
+                <div class="input-group">
+                  <span class="input-group-text border-0"
+                    ><i class="bi bi-search"></i
+                  ></span>
+                  <input
+                    type="text"
+                    class="form-control border-0"
+                    id="keyword"
+                    placeholder="Job title, keywords..."
+                  />
+                </div>
+              </div>
+
+              <!-- Category Dropdown -->
+              <div class="col-12 col-md-3">
+                <label for="category" class="form-label visually-hidden"
+                  >Category</label
+                >
+                <div class="input-group">
+                  <span class="input-group-text bg-white border-0"
+                    ><i class="bi bi-layers"></i
+                  ></span>
+                  <select class="form-select border-0" id="category">
+                    <option selected>All Categories</option>
+                    <option value="customer-service">Customer Service</option>
+                    <option value="sales">Sales</option>
+                    <option value="teaching">Teaching</option>
+                    <option value="hr">Human Resources</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Location Dropdown -->
+              <div class="col-12 col-md-3">
+                <label for="location" class="form-label visually-hidden"
+                  >Location</label
+                >
+                <div class="input-group">
+                  <span class="input-group-text bg-white border-0"
+                    ><i class="bi bi-geo-alt"></i
+                  ></span>
+                  <select class="form-select border-0" id="location">
+                    <option selected>All Locations</option>
+                    <option value="qc">Quezon City</option>
+                    <option value="bulacan">Bulacan</option>
+                    <option value="caloocan">Caloocan</option>
+                    <option value="tuguegarao">Tuguegarao</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Search Button -->
+              <div class="col-12 col-md-2 d-grid">
+                <button type="submit" class="btn btn-primary search-job-button">
+                  <i class="bi bi-search me-2"></i>Search
+                </button>
+              </div>
+            </form>
           </div>
         </section>
 
@@ -271,6 +349,7 @@
               aria-labelledby="fulltime-tab"
               tabindex="0"
             >
+              <a href="jobslistings.html"></a>
               <div class="card mb-3 p-3 job-listings-card">
                 <div class="row align-items-center g-3">
                   <!-- Image Column -->
@@ -306,7 +385,9 @@
 
                   <!-- Apply Button Column -->
                   <div class="col-12 col-sm-3 col-md-3 text-sm-end text-center">
-                    <a href="#" class="apply-now-Button">Apply Now</a>
+                    <a href="jobDetails.html" class="view-job-button"
+                      >View Job</a
+                    >
                   </div>
                 </div>
               </div>
@@ -346,7 +427,9 @@
 
                   <!-- Apply Button Column -->
                   <div class="col-12 col-sm-3 col-md-3 text-sm-end text-center">
-                    <a href="#" class="apply-now-Button">Apply Now</a>
+                    <a href="jobDetails.html" class="view-job-button"
+                      >View Job</a
+                    >
                   </div>
                 </div>
               </div>
@@ -385,7 +468,9 @@
 
                   <!-- Apply Button Column -->
                   <div class="col-12 col-sm-3 col-md-3 text-sm-end text-center">
-                    <a href="#" class="apply-now-Button">Apply Now</a>
+                    <a href="jobDetails.html" class="view-job-button"
+                      >View Job</a
+                    >
                   </div>
                 </div>
               </div>
@@ -424,7 +509,9 @@
 
                   <!-- Apply Button Column -->
                   <div class="col-12 col-sm-3 col-md-3 text-sm-end text-center">
-                    <a href="#" class="apply-now-Button">Apply Now</a>
+                    <a href="jobDetails.html" class="view-job-button"
+                      >View Job</a
+                    >
                   </div>
                 </div>
               </div>
@@ -463,7 +550,9 @@
 
                   <!-- Apply Button Column -->
                   <div class="col-12 col-sm-3 col-md-3 text-sm-end text-center">
-                    <a href="#" class="apply-now-Button">Apply Now</a>
+                    <a href="jobDetails.html" class="view-job-button"
+                      >View Job</a
+                    >
                   </div>
                 </div>
               </div>
@@ -512,7 +601,9 @@
 
                   <!-- Apply Button Column -->
                   <div class="col-12 col-sm-3 col-md-3 text-sm-end text-center">
-                    <a href="#" class="apply-now-Button">Apply Now</a>
+                    <a href="jobDetails.html" class="view-job-button"
+                      >View Job</a
+                    >
                   </div>
                 </div>
               </div>
@@ -521,7 +612,9 @@
             </div>
           </div>
           <div class="mt-5 text-center">
-            <a href="#" class="browse-more-jobs">Browse More Jobs</a>
+            <a href="jobslistings.html" class="browse-more-jobs"
+              >Browse More Jobs</a
+            >
           </div>
         </section>
       </main>

@@ -88,9 +88,9 @@ function JobListings() {
         </div>
         <div className="col-12 col-sm-3 col-md-3 text-sm-end text-center">
           <Link
-            to={`/jobDetails/${job.job_id}-${slugify(job.job_title)}-${slugify(
-              job.job_type
-            )}`}
+            to={`/jobDetails/${slugify(job.job_type)}-${slugify(
+              job.job_title
+            )}-${job.job_id}`}
             className="view-job-button"
           >
             View Job
@@ -106,6 +106,7 @@ function JobListings() {
         title="Jobs That Match Your Talent."
         tagline="Browse jobs from top companies near you"
         showButtons={false}
+        sectionClassName="custom-banner"
       />
 
       <section className="job-listings container p-5" data-aos="fade-up">
@@ -197,7 +198,7 @@ function JobListings() {
                 <div className="spinner"></div>
               </div>
             )}
-            {error && <p className="text-danger">{error}</p>}
+            {error && <p className="text-danger text-center">{error}</p>}
             {!loading && !error && filteredJobs.length === 0 && (
               <p className="text-muted text-center">
                 No {activeTab.replace("time", "-time")} jobs available.

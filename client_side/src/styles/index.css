@@ -397,6 +397,16 @@ body {
   border-radius: 10px;
 }
 
+.login-section .account-text,
+.register-section .account-text {
+  color: var(--secondary_1);
+}
+
+.login-section small a,
+.register-section small a {
+  color: var(--primary_1);
+}
+
 .form-container .form-control:focus,
 .form-select:focus {
   box-shadow: none !important;
@@ -435,6 +445,12 @@ body {
 
 .showpass-button {
   color: var(--primary_1);
+}
+
+/* Register Page */
+.register-section .custom-select-style {
+  border: 1px solid rgba(0, 123, 255, 0.2);
+  color: var(--text_1);
 }
 
 /* Job Details */

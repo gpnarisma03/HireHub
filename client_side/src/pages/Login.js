@@ -49,104 +49,96 @@ function Login() {
         showButtons={false}
         sectionClassName="custom-banner"
       />
-      <section className="login-section py-5" data-aos="fade-down">
+      <section className="login-section p-5" data-aos="fade-down">
         <div className="container">
-          <div className="row justify-content-center">
-            <div className="form-container col-md-6 col-lg-5 p-5">
-              <div className="card border-0 p-4">
-                <h3 className="text-center mb-4">HireHub Login</h3>
-                <hr />
-                <form onSubmit={handleLogin}>
-                  {/* Email */}
-                  <div className="mb-3">
-                    <div className="input-group">
-                      <span className="input-group-text bg-white border-0">
-                        <i className="bi bi-envelope text-muted"></i>
-                      </span>
-                      <input
-                        type="email"
-                        className="form-control border-0"
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Email address"
-                        required
-                        style={{ backgroundColor: "rgba(255, 255, 255, 0.9)" }}
-                      />
-                    </div>
-                  </div>
+          <div className="form-container mx-auto col-md-6 col-lg-5 p-4 p-md-5 card border-0">
+            <h3 className="text-center mb-4">HireHub Login</h3>
+            <hr />
+            <form onSubmit={handleLogin}>
+              {/* Email */}
+              <div className="mb-3 input-group">
+                <span className="input-group-text bg-white border-0">
+                  <i className="bi bi-envelope text-muted"></i>
+                </span>
+                <input
+                  type="email"
+                  className="form-control border-0"
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email address"
+                  required
+                  style={{ backgroundColor: "rgba(255, 255, 255, 0.9)" }}
+                />
+              </div>
 
-                  {/* Password */}
-                  <div className="mb-3">
-                    <div className="input-group">
-                      <span className="input-group-text bg-white border-0">
-                        <i className="bi bi-lock text-muted"></i>
-                      </span>
-                      <input
-                        type={showPassword ? "text" : "password"}
-                        className="form-control border-0"
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Password"
-                        required
-                      />
-                      <button
-                        type="button"
-                        className="btn btn-outline-secondary border-0 bg-white"
-                        onClick={togglePassword}
-                      >
-                        <i
-                          className={`bi showpass-button ${
-                            showPassword ? "bi-eye-slash" : "bi-eye"
-                          }`}
-                        ></i>
-                      </button>
-                    </div>
-                  </div>
+              {/* Password */}
+              <div className="mb-3 input-group">
+                <span className="input-group-text bg-white border-0">
+                  <i className="bi bi-lock text-muted"></i>
+                </span>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  className="form-control border-0"
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                  required
+                />
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary border-0 bg-white"
+                  onClick={togglePassword}
+                >
+                  <i
+                    className={`bi showpass-button ${
+                      showPassword ? "bi-eye-slash" : "bi-eye"
+                    }`}
+                  ></i>
+                </button>
+              </div>
 
-                  {/* Error Message */}
-                  {error && (
-                    <div className="alert alert-danger text-center py-2">
-                      {error}
-                    </div>
+              {/* Error Message */}
+              {error && (
+                <div className="alert alert-danger text-center py-2">
+                  {error}
+                </div>
+              )}
+
+              {/* Submit */}
+              <div className="d-grid">
+                <button
+                  type="submit"
+                  className="login-btn text-center"
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <>
+                      <span
+                        className="spinner-border spinner-border-sm me-2"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
+                      Logging in...
+                    </>
+                  ) : (
+                    <>
+                      <i className="bi bi-box-arrow-in-right me-1"></i>
+                      Login
+                    </>
                   )}
-
-                  {/* Submit */}
-                  <div className="d-grid">
-                    <button
-                      type="submit"
-                      className="login-btn text-center"
-                      disabled={loading}
-                    >
-                      {loading ? (
-                        <>
-                          <span
-                            className="spinner-border spinner-border-sm me-2"
-                            role="status"
-                            aria-hidden="true"
-                          ></span>
-                          Logging in...
-                        </>
-                      ) : (
-                        <>
-                          <i className="bi bi-box-arrow-in-right me-1"></i>
-                          Login
-                        </>
-                      )}
-                    </button>
-                  </div>
-                </form>
+                </button>
               </div>
+            </form>
 
-              {/* Register Prompt */}
-              <div className="text-center mt-3">
-                <small className="text-muted">
-                  Don’t have an account?{" "}
-                  <Link
-                    to="/register"
-                    className="text-primary fw-semibold text-decoration-none"
-                  >
-                    Register
-                  </Link>
-                </small>
-              </div>
+            {/* Register Prompt */}
+            <div className="text-center mt-3">
+              <small className="account-text">
+                Don’t have an account?{" "}
+                <Link
+                  to="/register"
+                  className="fw-semibold text-decoration-none"
+                >
+                  Register
+                </Link>
+              </small>
             </div>
           </div>
         </div>

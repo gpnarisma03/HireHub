@@ -44,9 +44,9 @@ function FeatureJobs() {
         </div>
         <div className="col-12 col-sm-3 col-md-3 text-sm-end text-center">
           <Link
-            to={`/jobDetails/${job.job_id}-${slugify(job.job_title)}-${slugify(
-              job.job_type
-            )}`}
+            to={`/jobDetails/${slugify(job.job_type || "type")}-${slugify(
+              job.job_title || "title"
+            )}-${job.job_id}`}
             className="view-job-button"
           >
             View Job
@@ -105,7 +105,7 @@ function FeatureJobs() {
               <div className="spinner"></div>
             </div>
           )}
-          {error && <p className="text-danger">{error}</p>}
+          {error && <p className="text-danger text-center">{error}</p>}
           {!loading && !error && filteredJobs.length === 0 && (
             <p className="text-muted text-center">
               No {activeTab.replace("time", "-time")} jobs available.

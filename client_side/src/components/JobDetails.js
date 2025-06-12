@@ -1,12 +1,12 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import UseJobs from "../hooks/UseJobs"; // Make sure this hook fetches all jobs
+import UseJobs from "../hooks/UseJobs";
 
 import Banner from "./Banner";
 
 function JobDetails() {
   const { jobSlug } = useParams();
-  const jobId = jobSlug.split("-")[0];
+  const jobId = jobSlug.split("-").pop();
 
   const { jobs, loading, error } = UseJobs();
   const job = jobs.find((job) => job.job_id.toString() === jobId);
@@ -33,7 +33,7 @@ function JobDetails() {
         title="Your Next Role Starts Here."
         tagline="See what makes this opportunity the right fit for you."
         showButtons={false}
-        sectionClassName="job-details"
+        sectionClassName="custom-banner"
       />
 
       <section className="job-details container mt-4" data-aos="fade-down">

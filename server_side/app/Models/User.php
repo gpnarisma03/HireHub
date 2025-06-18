@@ -50,9 +50,9 @@ class User extends Authenticatable
     /**
      * A user (employer) may own one company
      */
-    public function company(): HasOne
+    public function companies(): hasMany
     {
-        return $this->hasOne(Company::class, 'user_id');
+        return $this->hasMany(Company::class, 'user_id');
     }
 
     /**

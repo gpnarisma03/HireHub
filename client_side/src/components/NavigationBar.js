@@ -23,6 +23,20 @@ function NavigationBar() {
     handleNavLinkClick(); // collapse on logout too
   };
 
+  const getDashboardLink = () => {
+    if (user?.role === "admin") return "/dashboard";
+    if (user?.role === "employer") return "/employer";
+    return "/employee_profile";
+  };
+
+  const getDashboardLabel = () => {
+    if (user?.role === "admin")
+      return { label: "DASHBOARD", className: "dashboard-admin" };
+    if (user?.role === "employer")
+      return { label: "EMPLOYER PANEL", className: "dashboard-employer" };
+    return { label: "MY PROFILE", className: "dashboard-employee" };
+  };
+
   return (
     <header
       style={{
@@ -97,6 +111,17 @@ function NavigationBar() {
                 CONTACT
               </Link>
             </li>
+            {user && (
+              <li className="nav-item">
+                <Link
+                  className={`nav-link ${getDashboardLabel().className}`}
+                  to={getDashboardLink()}
+                  onClick={handleNavLinkClick}
+                >
+                  {getDashboardLabel().label}
+                </Link>
+              </li>
+            )}
           </ul>
 
           {!user ? (
@@ -139,7 +164,7 @@ function NavigationBar() {
 
           {(!user || user.role === "employer") && (
             <Link
-              to="/postJobs"
+              to="/employer"
               className="post-a-job d-none d-lg-flex align-items-center justify-content-center"
               onClick={handleNavLinkClick}
             >

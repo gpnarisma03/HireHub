@@ -17,7 +17,7 @@ function Banner({ title, tagline, showButtons = true, sectionClassName = "" }) {
               Search a Job
             </Link>
             <Link to="/jobs" className="find-a-job-button px-4 py-2">
-              Find a Job
+              Find a Talent
             </Link>
           </div>
         )}

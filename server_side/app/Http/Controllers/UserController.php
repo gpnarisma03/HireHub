@@ -69,14 +69,18 @@ class UserController extends Controller
         }
     }
 
-        public function getUserDetails(Request $request)
-    {
-        // $request->user() returns the authenticated user via Sanctum
-        return response()->json([
-            'success' => true,
-            'user' => $request->user(),
-        ]);
-    }
+public function getUserDetails(Request $request)
+{
+   $user = $request->user()->load('companies');
+
+
+return response()->json([
+    'success' => true,
+    'user' => $user,
+]);
+
+}
+
 
     public function getAllUsers()
     {

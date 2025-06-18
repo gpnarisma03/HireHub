@@ -116,6 +116,21 @@ body {
   z-index: 3;
 }
 
+.dashboard-admin {
+  color: var(--primary_1) !important;
+  font-weight: 600 !important;
+}
+
+.dashboard-employer {
+  color: var(--secondary_1) !important;
+  font-weight: 600 !important;
+}
+
+.dashboard-employee {
+  color: var(--secondary_1) !important;
+  font-weight: 600 !important;
+}
+
 /* Banner Section */
 
 .hero-banner {
@@ -184,6 +199,23 @@ body {
 }
 
 /* Search Section */
+input {
+  color: var(--text_1) !important;
+  border: 1px solid #ccc;
+}
+
+input:focus {
+  color: blue; /* changes text color while typing */
+}
+select {
+  color: var(--text_1) !important;
+  border: 1px solid #ccc;
+}
+
+select:focus {
+  color: var(--text_1);
+  border-color: green;
+}
 
 .search-section {
   background-color: var(--primary_1);
@@ -486,6 +518,25 @@ body {
   transform: translateY(-2px);
   text-decoration: none;
   color: white;
+}
+
+/* Manage Company */
+.custom-sidebar .list-group-item {
+  background-color: #f0f0f0;
+  color: var(--text_1);
+  transition: background-color 0.3s ease;
+}
+
+.custom-sidebar .list-group-item:hover {
+  background-color: var(--primary_1) !important;
+  color: white !important;
+}
+
+.custom-sidebar .list-group-item.active {
+  background-color: var(--secondary_1);
+  color: white;
+  font-weight: 600;
+  border: none;
 }
 
 /* Footer */

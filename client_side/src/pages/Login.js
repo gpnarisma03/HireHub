@@ -11,7 +11,7 @@ function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(""); // ✅ updated this line
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const { login } = useContext(AuthContext);

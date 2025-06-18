@@ -10,11 +10,14 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import About from "./pages/About";
 import JobDetails from "./components/JobDetails";
-import Profile from "./pages/Profile";
+import MyProfile from "./pages/Profile";
 import Dashboard from "./pages/Dashboard";
 import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
 import JobListings from "./components/JobListings";
+
+import EmployerPanel from "./pages/EmployerPanel";
+import ManageCompany from "./pages/ManageCompany";
 
 function App() {
   const { user, loading } = useContext(AuthContext);
@@ -23,8 +26,14 @@ function App() {
     AOS.init({ duration: 1000, once: true });
   }, []);
 
-  const requireAuth = (element) =>
-    user ? element : <Navigate to="/login" replace />;
+  const requireAuth = (element, allowedRoles = []) => {
+    if (!user) return <Navigate to="/login" replace />;
+    if (allowedRoles.length > 0 && !allowedRoles.includes(user.role)) {
+      return <Navigate to="/" replace />;
+    }
+    return element;
+  };
+
   const redirectIfAuth = (element) =>
     user ? <Navigate to="/" replace /> : element;
 
@@ -32,14 +41,13 @@ function App() {
     <main className="container">
       <NavigationBar />
 
-      {/* Show spinner only inside the Routes content */}
       {loading ? (
         <div className="spinner-container">
           <div className="spinner"></div>
         </div>
       ) : (
         <Routes>
-          {/* Public */}
+          {/* Public Routes */}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={redirectIfAuth(<Login />)} />
           <Route path="/register" element={redirectIfAuth(<Register />)} />
@@ -47,10 +55,25 @@ function App() {
           <Route path="/jobs" element={<JobListings />} />
           <Route path="/jobDetails/:jobSlug" element={<JobDetails />} />
 
-          {/* Protected */}
-          <Route path="/profile" element={requireAuth(<Profile />)} />
-          <Route path="/dashboard" element={requireAuth(<Dashboard />)} />
+          {/* Protected Routes */}
+          <Route
+            path="/dashboard"
+            element={requireAuth(<Dashboard />, ["admin"])}
+          />
+          <Route
+            path="/employer"
+            element={requireAuth(<EmployerPanel />, ["employer"])}
+          />
+          <Route
+            path="/employer/company/:companyId"
+            element={requireAuth(<ManageCompany />, ["employer"])}
+          />
+          <Route
+            path="/employee"
+            element={requireAuth(<MyProfile />, ["employee"])}
+          />
 
+          {/* 404 Route */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       )}

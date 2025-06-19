@@ -18,6 +18,9 @@ import JobListings from "./components/JobListings";
 
 import EmployerPanel from "./pages/EmployerPanel";
 import ManageCompany from "./pages/ManageCompany";
+import JobApplicants from "./pages/JobApplicants";
+
+import VerifyEmail from "./pages/VerifyEmail";
 
 function App() {
   const { user, loading } = useContext(AuthContext);
@@ -65,16 +68,22 @@ function App() {
             element={requireAuth(<EmployerPanel />, ["employer"])}
           />
           <Route
-            path="/employer/company/:companyId"
+            path="/employer/company/:company_id"
             element={requireAuth(<ManageCompany />, ["employer"])}
           />
           <Route
             path="/employee"
             element={requireAuth(<MyProfile />, ["employee"])}
           />
+          <Route
+            path="/employer/job/:job_id/applicants"
+            element={requireAuth(<JobApplicants />)}
+          />
 
           {/* 404 Route */}
           <Route path="*" element={<NotFound />} />
+
+          <Route path="/verify-email" element={<VerifyEmail />} />
         </Routes>
       )}
 

@@ -90,57 +90,62 @@ function EmployerPanel() {
 
       <h4 className="mb-3">Your Company</h4>
 
-      <table className="table table-bordered table-hover align-middle">
-        <thead className="table-light">
-          <tr>
-            <th>Logo</th>
-            <th>Company Name</th>
-            <th>Details</th>
-            <th>Location</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {user?.companies && user.companies.length > 0 ? (
-            user.companies.map((company) => (
-              <tr key={company.company_id}>
-                <td>
-                  <img
-                    src={`${logoBaseUrl}${company.company_logo}`}
-                    alt="Company Logo"
-                    style={{
-                      width: "80px",
-                      height: "80px",
-                      objectFit: "cover",
-                    }}
-                    className="rounded"
-                  />
-                </td>
-                <td>{company.company_name}</td>
-                <td>{company.company_details}</td>
-                <td>
-                  {company.street}, {company.city}, {company.region},{" "}
-                  {company.zip_code}
-                </td>
-                <td>
-                  <Link
-                    to={`/employer/company/${company.company_id}`}
-                    className="btn btn-sm btn-outline-primary"
-                  >
-                    Manage Company
-                  </Link>
+      <div className="table-responsive">
+        <table className="table table-bordered align-middle">
+          <thead className="table-light">
+            <tr>
+              <th>Logo</th>
+              <th>Company Name</th>
+              <th>Details</th>
+              <th>Location</th>
+              <th style={{ whiteSpace: "nowrap" }}>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {user?.companies && user.companies.length > 0 ? (
+              user.companies.map((company) => (
+                <tr key={company.company_id}>
+                  <td>
+                    <img
+                      src={`${logoBaseUrl}${company.company_logo}`}
+                      alt="Company Logo"
+                      style={{
+                        width: "80px",
+                        height: "80px",
+                        objectFit: "cover",
+                      }}
+                      className="rounded"
+                    />
+                  </td>
+                  <td>{company.company_name}</td>
+                  <td>{company.company_details}</td>
+                  <td>
+                    {company.street}, {company.city}, {company.region},{" "}
+                    {company.zip_code}
+                  </td>
+                  <td className="text-nowrap">
+                    <div className="btn-group gap-2" role="group">
+                      <Link
+                        to={`/employer/company/${company.company_id}`}
+                        className="manage-company-btn"
+                      >
+                        View
+                      </Link>
+                      <button className="delete-btn">Delete</button>
+                    </div>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5" className="text-center text-muted">
+                  No Company Profile Yet
                 </td>
               </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="5" className="text-center text-muted">
-                No Company Profile Yet
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+            )}
+          </tbody>
+        </table>
+      </div>
 
       <div className="text-end mt-3">
         <button className="btn btn-success" onClick={() => setShowModal(true)}>

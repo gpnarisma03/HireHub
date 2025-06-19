@@ -16,7 +16,6 @@ function SearchSection() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ keyword, category, location });
   };
 
   // Extract unique cities from jobs

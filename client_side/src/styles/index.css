@@ -131,6 +131,55 @@ body {
   font-weight: 600 !important;
 }
 
+.resend-button {
+  background-color: var(--primary_1);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.resend-button:hover {
+  background-color: var(--secondary_1);
+  transform: translateY(-2px);
+  text-decoration: none;
+  color: white;
+}
+
+.manage-company-btn {
+  background-color: var(--primary_1);
+  color: white;
+  padding: 5px 30px;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-decoration: none;
+}
+
+.manage-company-btn:hover {
+  background-color: var(--primary_2);
+  transform: translateY(-2px);
+  text-decoration: none;
+  color: white;
+}
+
+.delete-btn {
+  background-color: rgb(223, 58, 58);
+  color: white;
+  padding: 5px 30px;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.delete-btn:hover {
+  background-color: rgb(218, 32, 32);
+  transform: translateY(-2px);
+  text-decoration: none;
+  color: white;
+}
+
 /* Banner Section */
 
 .hero-banner {

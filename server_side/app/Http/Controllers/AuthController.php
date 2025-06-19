@@ -8,40 +8,47 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
-    public function login(Request $request)
-    {
-        // Validate input first
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|string',
-        ]);
+public function login(Request $request)
+{
+    // Validate input
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required|string',
+    ]);
 
-        // Check if user with given email exists
-        $user = User::where('email', $request->email)->first();
+    // Check if user exists
+    $user = User::where('email', $request->email)->first();
 
-        if (!$user) {
-            // Email does not exist
-            return response()->json([
-                'success' => false,
-                'message' => 'Email does not exist',
-            ], 401);
-        }
-
-        // Email exists, check password
-        if (!Hash::check($request->password, $user->password)) {
-            // Password incorrect
-            return response()->json([
-                'success' => false,
-                'message' => 'Password is incorrect',
-            ], 401);
-        }
-
-        // Both email and password are correct
+    if (!$user) {
         return response()->json([
-            'success' => true,
-            'message' => 'Login successful',
-            'access_token' => $user->createToken('auth_token')->plainTextToken,
-            'token_type' => 'Bearer',
-        ]);
+            'success' => false,
+            'message' => 'Email does not exist',
+        ], 401);
     }
+
+    // Check password
+    if (!Hash::check($request->password, $user->password)) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Password is incorrect',
+        ], 401);
+    }
+
+    // ✅ Check if email is verified
+    if (is_null($user->email_verified_at)) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Please verify your email address before logging in.',
+        ], 403); // Forbidden
+    }
+
+    // Login success
+    return response()->json([
+        'success' => true,
+        'message' => 'Login successful',
+        'access_token' => $user->createToken('auth_token')->plainTextToken,
+        'token_type' => 'Bearer',
+    ]);
+}
+
 }

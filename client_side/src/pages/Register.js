@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Banner from "../components/Banner";
+import Swal from "sweetalert2";
 
 function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [role, setRole] = useState("");
   const [errors, setErrors] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
   const [success, setSuccess] = useState("");
 
   const [formData, setFormData] = useState({
@@ -20,8 +22,6 @@ function Register() {
     password: "",
     confirm_password: "",
   });
-
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,10 +35,11 @@ function Register() {
     e.preventDefault();
     setErrors([]);
     setSuccess("");
+    setIsLoading(true); // ✅ Start loading
 
     if (formData.password !== formData.confirm_password) {
       setErrors(["Passwords do not match."]);
-
+      setIsLoading(false); // ❌ Stop loading if error
       return;
     }
 
@@ -49,21 +50,41 @@ function Register() {
       });
 
       if (response.status === 201 || response.status === 200) {
-        setSuccess("Registration successful! Redirecting to login...");
-        setTimeout(() => navigate("/login"), 1500);
+        Swal.fire({
+          icon: "success",
+          title: "Registered!",
+          text: "Please check your email to verify your account.",
+          timer: 3000,
+          showConfirmButton: false,
+        });
+
+        // Clear form
+        setFormData({
+          first_name: "",
+          middle_initial: "",
+          last_name: "",
+          email: "",
+          mobile_number: "",
+          password: "",
+          confirm_password: "",
+        });
+        setRole("");
+
+        // Redirect to login after 3s
+        setTimeout(() => navigate("/login"), 3000);
       }
     } catch (err) {
       const errorData = err.response?.data;
-
       const backendErrors = errorData?.errors;
       if (backendErrors) {
-        const messages = Object.values(backendErrors).flat(); // array, good
-        setErrors(messages);
+        setErrors(Object.values(backendErrors).flat());
       } else {
-        const fallback =
-          errorData?.message || "Registration failed. Please try again.";
-        setErrors([fallback]);
+        setErrors([
+          errorData?.message || "Registration failed. Please try again.",
+        ]);
       }
+    } finally {
+      setIsLoading(false); // ✅ Always stop loading
     }
   };
 
@@ -88,7 +109,6 @@ function Register() {
                 ))}
               </ul>
             )}
-            {success && <p className="text-success text-center">{success}</p>}
 
             <form onSubmit={handleSubmit}>
               {/* First Name */}
@@ -250,8 +270,25 @@ function Register() {
 
               {/* Submit Button */}
               <div className="d-grid">
-                <button type="submit" className="register-btn text-center">
-                  <i className="bi bi-box-arrow-in-right me-1"></i> Register
+                <button
+                  type="submit"
+                  className="register-btn text-center"
+                  disabled={isLoading}
+                >
+                  {isLoading ? (
+                    <>
+                      <span
+                        className="spinner-border spinner-border-sm me-2"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
+                      Processing...
+                    </>
+                  ) : (
+                    <>
+                      <i className="bi bi-box-arrow-in-right me-1"></i> Register
+                    </>
+                  )}
                 </button>
               </div>
             </form>

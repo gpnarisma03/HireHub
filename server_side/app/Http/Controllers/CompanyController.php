@@ -53,4 +53,32 @@ public function createCompany(Request $request)
     ], 201);
 }
 
+public function getCompanyById($id)
+{
+    $userId = Auth::id();
+
+    $company = Company::with([
+        'jobs.applications.user'  // Nested eager loading
+    ])
+    ->where('company_id', $id)
+    ->where('user_id', $userId)
+    ->first();
+
+    if (!$company) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Company not found or access denied.',
+        ], 404);
+    }
+
+    return response()->json([
+        'success' => true,
+        'company' => $company,
+        'jobs' => $company->jobs, // Includes applications and users
+    ], 200);
+}
+
+
+
+
 }

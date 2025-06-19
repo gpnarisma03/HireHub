@@ -21,7 +21,9 @@ function SearchSection() {
   // Extract unique cities from jobs
   const uniqueCities = Array.from(
     new Set(
-      jobs.filter((job) => job?.company?.city).map((job) => job.company.city)
+      (jobs || [])
+        .filter((job) => job?.company?.city)
+        .map((job) => job.company.city)
     )
   ).sort((a, b) => a.localeCompare(b));
 

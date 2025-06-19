@@ -1,11 +1,11 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // ✅ Add loading state
+  const [loading, setLoading] = useState(true);
 
   const setAuthToken = (token) => {
     if (token) {
@@ -14,6 +14,13 @@ export const AuthProvider = ({ children }) => {
       delete axios.defaults.headers.common["Authorization"];
     }
   };
+
+  // ✅ Move logout above useEffect
+  const logout = useCallback(() => {
+    localStorage.removeItem("token");
+    setAuthToken(null);
+    setUser(null);
+  }, []);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -30,16 +37,16 @@ export const AuthProvider = ({ children }) => {
           }
         })
         .catch(() => logout())
-        .finally(() => setLoading(false)); // ✅ End loading
+        .finally(() => setLoading(false));
     } else {
-      setLoading(false); // ✅ No token, done loading
+      setLoading(false);
     }
-  }, []);
+  }, [logout]);
 
   const login = (token) => {
     localStorage.setItem("token", token);
     setAuthToken(token);
-    setLoading(true); // optional: start loading during login
+    setLoading(true);
 
     axios
       .get(`${process.env.REACT_APP_API_BASE_URL}/api/users/`)
@@ -51,13 +58,7 @@ export const AuthProvider = ({ children }) => {
         }
       })
       .catch(() => logout())
-      .finally(() => setLoading(false)); // ✅ End loading
-  };
-
-  const logout = () => {
-    localStorage.removeItem("token");
-    setAuthToken(null);
-    setUser(null);
+      .finally(() => setLoading(false));
   };
 
   return (

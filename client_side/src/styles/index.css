@@ -180,6 +180,13 @@ body {
   color: white;
 }
 
+.custom-table th {
+  color: var(--primary_1) !important;
+  font-weight: 600 !important;
+}
+.custom-table td {
+  color: var(--text_1) !important;
+}
 /* Banner Section */
 
 .hero-banner {

@@ -106,13 +106,16 @@ class JobCategoryController extends Controller
         ]);
     }
 
-    public function getAllCategories()
-    {
-        $categories = JobCategory::withSum('jobs', 'job_vacancy')->get();
-    
-        return response()->json([
-            'success' => true,
-            'categories' => $categories,
-        ]);
-    }
+public function getAllCategories()
+{
+    $categories = JobCategory::withSum(['jobs as open_jobs_sum_job_vacancy' => function ($query) {
+        $query->where('status', 'open');
+    }], 'job_vacancy')->get();
+
+    return response()->json([
+        'success' => true,
+        'categories' => $categories,
+    ]);
+}
+
 }

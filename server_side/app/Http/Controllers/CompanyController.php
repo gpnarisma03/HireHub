@@ -77,6 +77,33 @@ public function getCompanyById($id)
         'jobs' => $company->jobs, // Includes applications and users
     ], 200);
 }
+public function deleteCompany($id)
+{
+    $userId = Auth::id();
+
+    $company = Company::where('company_id', $id)
+        ->where('user_id', $userId)
+        ->first();
+
+    if (!$company) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Company not found or access denied.',
+        ], 404);
+    }
+
+    if ($company->company_logo) {
+        \Storage::disk('public')->delete($company->company_logo);
+    }
+
+    $company->delete();
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Company deleted successfully.',
+    ], 200);
+}
+
 
 
 

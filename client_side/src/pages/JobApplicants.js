@@ -6,10 +6,12 @@ function JobApplicants() {
   const { job_id } = useParams();
   const [applicants, setApplicants] = useState([]);
   const [jobTitle, setJobTitle] = useState("");
+  const [loading, setLoading] = useState(true); // Added loading state
 
   useEffect(() => {
     const fetchApplicants = async () => {
       try {
+        setLoading(true);
         const res = await axios.get(
           `${process.env.REACT_APP_API_BASE_URL}/api/applications/job/${job_id}`,
           {
@@ -33,24 +35,51 @@ function JobApplicants() {
         }
       } catch (error) {
         console.error("Error fetching applicants:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchApplicants();
   }, [job_id]);
 
+  const getBadgeClass = (status) => {
+    switch (status) {
+      case "pending":
+        return "bg-warning text-dark";
+      case "hired":
+        return "bg-success";
+      case "reviewed":
+        return "bg-info text-dark";
+      case "rejected":
+        return "bg-danger";
+      default:
+        return "bg-secondary";
+    }
+  };
+
   return (
-    <div className="container p-5">
-      <h3>
+    <div className="container p-5 position-relative">
+      <h3 className="text-muted">
         Applicants for:{" "}
-        <span className="text-primary">{jobTitle || `Job #${job_id}`}</span>
+        <span className="text-job">
+          <span style={{ color: "var(--primary_1)" }}>{jobTitle}</span>{" "}
+          <span style={{ color: "var(--secondary_2)" }}>{`#${job_id}`}</span>
+        </span>
       </h3>
 
-      {applicants.length === 0 ? (
-        <p className="text-muted">No applicants found for this job.</p>
+      {loading ? (
+        <div className="spinner-container">
+          <div className="spinner"></div>
+        </div>
+      ) : applicants.length === 0 ? (
+        <p className="text-muted">No applicants yet.</p>
       ) : (
         <div className="table-responsive">
-          <table className="table table-bordered align-middle">
+          <table
+            className="table table-bordered align-middle custom-table"
+            style={{ color: "red" }}
+          >
             <thead className="table-light">
               <tr>
                 <th>Name</th>
@@ -58,7 +87,6 @@ function JobApplicants() {
                 <th>Status</th>
                 <th>Cover Letter</th>
                 <th>Applied At</th>
-
                 <th>Resume</th>
               </tr>
             </thead>
@@ -69,7 +97,11 @@ function JobApplicants() {
                     {app.user?.first_name} {app.user?.last_name}
                   </td>
                   <td>{app.user?.email}</td>
-                  <td>{app.status}</td>
+                  <td>
+                    <span className={`badge ${getBadgeClass(app.status)}`}>
+                      {app.status.toUpperCase()}
+                    </span>
+                  </td>
                   <td>{app.cover_letter}</td>
                   <td>{new Date(app.applied_at).toLocaleDateString()}</td>
                   <td>

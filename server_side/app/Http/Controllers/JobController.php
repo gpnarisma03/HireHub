@@ -49,14 +49,29 @@ class JobController extends Controller
         ], 201);
     }
 
-    public function index()
-    {
-        return response()->json([
-            'success' => true,
-            Job::with(['company', 'category'])->orderBy('posted_at', 'desc')->get()
-,
-        ]);
-    }
+public function index()
+{
+$jobs = Job::with(['company', 'category'])
+    ->where('status', 'open') // ✅ filter here
+    ->orderBy('posted_at', 'desc')
+    ->get();
+
+
+    $jobs->map(function ($job) {
+        $job->category->open_vacancy_total = $job->category
+            ->jobs()
+            ->where('status', 'open')
+            ->sum('job_vacancy');
+        return $job;
+    });
+
+    return response()->json([
+        'success' => true,
+        'jobs' => $jobs, // ✅ return the modified $jobs
+    ]);
+}
+
+
 
     public function destroy($id)
     {

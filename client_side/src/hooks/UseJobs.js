@@ -10,7 +10,7 @@ const UseJobs = () => {
     axios
       .get(`${process.env.REACT_APP_API_BASE_URL}/api/jobs`)
       .then((response) => {
-        const jobList = response.data["0"];
+        const jobList = response.data.jobs;
 
         setJobs(jobList);
       })

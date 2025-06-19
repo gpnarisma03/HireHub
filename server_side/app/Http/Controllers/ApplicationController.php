@@ -57,7 +57,7 @@ class ApplicationController extends Controller
     // (Optional) Get all applications for a specific job (for admin/employer)
     public function getByJob($job_id)
     {
-        $applications = Application::with('user')
+        $applications = Application::with('user', 'job')
             ->where('job_id', $job_id)
             ->get();
 

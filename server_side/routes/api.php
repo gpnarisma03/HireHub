@@ -75,6 +75,8 @@ Route::post('/email/resend', function (Request $request) {
 Route::prefix('company')->middleware(['auth:sanctum', 'role:employer'])->group(function () {
     Route::post('/', [CompanyController::class, 'createCompany']);
 Route::get('/{id}', [CompanyController::class, 'getCompanyById']);
+    Route::delete('/{id}', [CompanyController::class, 'deleteCompany']);
+
 
 });
 

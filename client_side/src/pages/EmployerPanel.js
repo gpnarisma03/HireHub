@@ -5,9 +5,13 @@ import axios from "axios";
 
 function EmployerPanel() {
   const { user } = useContext(AuthContext);
+
+  const [companyToDelete, setCompanyToDelete] = useState(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
   const logoBaseUrl = `${process.env.REACT_APP_API_BASE_URL}/storage/`;
 
-  const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState({
     company_name: "",
     company_details: "",
@@ -84,6 +88,35 @@ function EmployerPanel() {
     }
   };
 
+  const confirmDelete = (company) => {
+    setCompanyToDelete(company);
+    setShowDeleteModal(true);
+  };
+
+  const handleDeleteCompany = async () => {
+    if (!companyToDelete) return;
+
+    try {
+      await axios.delete(
+        `${process.env.REACT_APP_API_BASE_URL}/api/company/${companyToDelete.company_id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      alert("Company deleted successfully.");
+      window.location.reload(); // or update local state instead
+    } catch (error) {
+      console.error("Error deleting company:", error);
+      alert("Failed to delete company.");
+    } finally {
+      setShowDeleteModal(false);
+      setCompanyToDelete(null);
+    }
+  };
+
   return (
     <div className="container p-5">
       <h2 className="mb-4">Employer Panel</h2>
@@ -131,7 +164,12 @@ function EmployerPanel() {
                       >
                         View
                       </Link>
-                      <button className="delete-btn">Delete</button>
+                      <button
+                        className="delete-btn btn btn-danger"
+                        onClick={() => confirmDelete(company)}
+                      >
+                        Delete
+                      </button>
                     </div>
                   </td>
                 </tr>
@@ -265,6 +303,45 @@ function EmployerPanel() {
                   </button>
                 </div>
               </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showDeleteModal && (
+        <div
+          className="modal fade show d-block"
+          tabIndex="-1"
+          style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Confirm Delete</h5>
+                <button
+                  type="button"
+                  className="btn-close"
+                  onClick={() => setShowDeleteModal(false)}
+                ></button>
+              </div>
+              <div className="modal-body">
+                Are you sure you want to delete{" "}
+                <strong>{companyToDelete?.company_name}</strong>?
+              </div>
+              <div className="modal-footer">
+                <button
+                  className="btn btn-secondary"
+                  onClick={() => setShowDeleteModal(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="btn btn-danger"
+                  onClick={handleDeleteCompany}
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
         </div>

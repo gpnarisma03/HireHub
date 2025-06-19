@@ -46,8 +46,10 @@ function ExploreCategories() {
                 <div className="card-body">
                   <h5 className="card-title">{category.category_name}</h5>
                   <p className="card-text-vacancy">
-                    {category.jobs_sum_job_vacancy || 0} Vacanc
-                    {(category.jobs_sum_job_vacancy || 0) > 1 ? "ies" : "y"}
+                    {category.open_jobs_sum_job_vacancy || 0} Vacanc
+                    {(category.open_jobs_sum_job_vacancy || 0) > 1
+                      ? "ies"
+                      : "y"}
                   </p>
                 </div>
               </div>

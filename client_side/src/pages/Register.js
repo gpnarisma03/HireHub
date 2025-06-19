@@ -11,7 +11,6 @@ function Register() {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const [success, setSuccess] = useState("");
 
   const [formData, setFormData] = useState({
     first_name: "",
@@ -34,7 +33,7 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
-    setSuccess("");
+
     setIsLoading(true); // ✅ Start loading
 
     if (formData.password !== formData.confirm_password) {
@@ -205,7 +204,7 @@ function Register() {
                   required
                 >
                   <option value="" disabled>
-                    Are you an?
+                    Register as
                   </option>
                   <option value="employee">Employee</option>
                   <option value="employer">Employer</option>

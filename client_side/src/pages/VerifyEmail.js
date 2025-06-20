@@ -20,7 +20,7 @@ export default function VerifyEmail() {
     const signature = searchParams.get("signature");
 
     if (id && hash && expires && signature) {
-      const verificationUrl = `http://localhost:8000/api/email/verify/${id}/${hash}?expires=${expires}&signature=${signature}`;
+      const verificationUrl = `${process.env.REACT_APP_API_BASE_URL}/api/email/verify/${id}/${hash}?expires=${expires}&signature=${signature}`;
 
       axios
         .get(verificationUrl)

@@ -43,10 +43,13 @@ function Register() {
     }
 
     try {
-      const response = await axios.post("http://localhost:8000/api/users", {
-        ...formData,
-        role,
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_BASE_URL}/api/users`,
+        {
+          ...formData,
+          role,
+        }
+      );
 
       if (response.status === 201 || response.status === 200) {
         Swal.fire({

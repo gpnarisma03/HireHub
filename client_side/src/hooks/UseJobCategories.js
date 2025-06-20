@@ -12,7 +12,6 @@ function useJobCategories() {
       .then((response) => {
         if (response.data.success) {
           setCategories(response.data.categories);
-          console.log("Fetched categories:", response.data);
         } else {
           console.error("Fetch failed:", response.data);
           setError("Failed to fetch categories.");
